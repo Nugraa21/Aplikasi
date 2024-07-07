@@ -1,0 +1,40 @@
+name: maps_location
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Dependencies tambahan
+  # google_maps_flutter: ^2.6.1
+  flutter_map: ^7.0.0
+
+  # flutter_radar: ^3.9.1
+# ---------------------
+  # flutter_map: ^0.14.2
+  # latlong: ^1.0.2
+# --------------------
+  image_picker: ^0.8.4+4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    # - assets/gambar.jpeg
+    - assets/rohmat.jpg
+    - assets/ludang.jpg
+    - assets/fadrian.jpg
+    - assets/yoga.jpg
+    - assets/riski.jpg
+    - assets/trio.jpg
+    - assets/utdi.jpg
