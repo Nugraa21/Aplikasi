@@ -338,13 +338,13 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "maps_location",
+      "name": "Ludang_Proyek_UAS_Pemrograman_Mobile",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2024-07-07T16:51:42.889869Z",
+  "generated": "2024-07-08T09:08:37.020625Z",
   "generator": "pub",
   "generatorVersion": "3.4.3",
   "flutterRoot": "file:///C:/Users/LUDANG/Downloads/PROGRAM/flutter_windows_3.22.2-stable/flutter",
