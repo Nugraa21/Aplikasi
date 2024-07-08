@@ -52,3 +52,39 @@ flutter:
     # - assets/locations/trio.dart
     # - assets/locations/utdi.dart
 
+# ----------------------------
+# %YAML 1.1
+# ---
+# # ludang.customer
+# -
+#   id_customer: 1
+#   nama: "ludang"
+# -
+#   id_customer: 2
+#   nama: "nugroho"
+# -
+#   id_customer: 356
+#   nama: "ghfghf"
+# # ludang.orders
+# -
+#   id_order: 1
+#   jumlah: 10
+#   id_customer: 1
+# -
+#   id_order: 2
+#   jumlah: 23
+#   id_customer: 2
+# # phpmyadmin.pma__designer_settings
+# -
+#   username: "root"
+#   settings_data: "{\"angular_direct\":\"direct\",\"snap_to_grid\":\"off\",\"relation_lines\":\"true\"}"
+# # phpmyadmin.pma__recent
+# -
+#   username: "root"
+#   tables: "[{\"db\":\"ludang\",\"table\":\"customer\"},{\"db\":\"ludang\",\"table\":\"orders\"},{\"db\":\"mysql\",\"table\":\"help_keyword\"},{\"db\":\"mysql\",\"table\":\"help_category\"},{\"db\":\"mysql\",\"table\":\"gtid_slave_pos\"},{\"db\":\"mysql\",\"table\":\"general_log\"},{\"db\":\"mysql\",\"table\":\"help_topic\"},{\"db\":\"mysql\",\"table\":\"slow_log\"},{\"db\":\"mysql\",\"table\":\"tables_priv\"},{\"db\":\"mysql\",\"table\":\"table_stats\"}]"
+# # phpmyadmin.pma__userconfig
+# -
+#   username: "root"
+#   timevalue: "2024-06-26 14:53:44"
+#   config_data: "{\"Console\\/Mode\":\"collapse\",\"lang\":\"id\"}"
+# ...
