@@ -28,14 +28,15 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   List<LatLng> _locations = [
-    LatLng(-7.820680, 110.426558),
-    LatLng(-5.512911, 122.595906),
-    LatLng(-7.818056, 110.392439),
-    LatLng(-2.461111, 106.131780),
-    LatLng(-7.793475, 110.408455),
-    LatLng(-7.793663, 110.400068),
-    LatLng(-7.792784062515026, 110.4083096326256),
+    LatLng(-7.820680, 110.426558), // Ludang
+    LatLng(-5.512911, 122.595906), // Fadrian
+    LatLng(-7.818056, 110.392439), // Rohmat
+    LatLng(-2.461111, 106.131780), // Yoga
+    LatLng(-7.793475, 110.408455), // Riski
+    LatLng(-7.793663, 110.400068), // Trio
+    LatLng(-7.792784062515026, 110.4083096326256), // UTDI
   ];
+
   List<String> _names = [
     "Rumah Ludang (Pembuat Aplikasi)",
     "Rumah Muhammad Fadrian .S",
@@ -46,26 +47,25 @@ class HomeScreenState extends State<HomeScreen> {
     "UTDI"
   ];
 
-  // List<String> _imagePaths = [
-  //   'assets/ludang.jpg',
-  //   'assets/fadrian.jpg',
-  //   'assets/rohmat.jpg',
-  //   'assets/yoga.jpg',
-  //   'assets/riski.jpg',
-  //   'assets/trio.jpg',
-  //   'assets/utdi.jpg',
-  // ];
+  List<String> _imagePaths = [
+    'assets/ludang.jpg',
+    'assets/fadrian.jpg',
+    'assets/rohmat.jpg',
+    'assets/yoga.jpg',
+    'assets/riski.jpg',
+    'assets/trio.jpg',
+    'assets/utdi.jpg',
+  ];
 
   LatLng? _currentLocation;
   File? _image;
+  late MapController _mapController;
 
   @override
   void initState() {
     super.initState();
-    _loadDefaultMarker();
+    _mapController = MapController();
   }
-
-  Future<void> _loadDefaultMarker() async {}
 
   Future<void> _pickImage() async {
     final pickedFile =
@@ -81,17 +81,26 @@ class HomeScreenState extends State<HomeScreen> {
   void _onLocationButtonPressed(int index) {
     setState(() {
       _currentLocation = _locations[index];
+      _mapController.move(_currentLocation!,
+          15.0); // Pindah ke lokasi yang dipilih dengan zoom 15.0
     });
-    _showPopup(context, _names[index]);
+    _showPopup(context, _names[index], _imagePaths[index]);
   }
 
-  void _showPopup(BuildContext context, String name) {
+  void _showPopup(BuildContext context, String name, String imagePath) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(name),
-          content: Text('Ini rumah $name'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(imagePath),
+              SizedBox(height: 10),
+              Text('Ini rumah $name'),
+            ],
+          ),
           actions: [
             TextButton(
               onPressed: () {
@@ -120,6 +129,7 @@ class HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           FlutterMap(
+            mapController: _mapController,
             options: MapOptions(
               initialCenter: _currentLocation ?? LatLng(-7.815000, 110.420000),
               initialZoom: 15.0,
@@ -139,11 +149,14 @@ class HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           int index = _locations.indexOf(_currentLocation!);
-                          _showPopup(context, _names[index]);
+                          _showPopup(
+                              context, _names[index], _imagePaths[index]);
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image(image: AssetImage('assets/ludang.jpg')),
+                          child: Image(
+                              image: AssetImage(_imagePaths[
+                                  _locations.indexOf(_currentLocation!)])),
                         ),
                       ),
                     ),
@@ -159,11 +172,12 @@ class HomeScreenState extends State<HomeScreen> {
                       height: 50,
                       child: GestureDetector(
                         onTap: () {
-                          _showPopup(context, _names[index]);
+                          _onLocationButtonPressed(
+                              index); // Panggil fungsi ketika marker diklik
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image(image: AssetImage('assets/ludang.jpg')),
+                          child: Image(image: AssetImage(_imagePaths[index])),
                         ),
                       ),
                     );
@@ -171,9 +185,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
               RichAttributionWidget(
                 attributions: [
-                  TextSourceAttribution(
-                    'OpenStreetMap contributors',
-                  ),
+                  TextSourceAttribution('OpenStreetMap contributors'),
                 ],
               ),
             ],
